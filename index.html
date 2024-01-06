@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+
+<html>
+<meta charset='UTF-8'/><meta content='width=device-width, initial-scale=1, user-scalable=1, minimum-scale=1, maximum-scale=5' name='viewport'/><meta content='IE=edge' http-equiv='X-UA-Compatible'/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Antique&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.19/dist/sweetalert2.all.min.js">
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark/dark.css">
+<script src="https://kit.fontawesome.com/4f3ce16e3e.js" crossorigin="anonymous">
+</script><link href="https://kuisberhadiah.likeadream.repl.co/style.css" rel="stylesheet" type="text/css" /><!--<script src="https://bukadulu.likeadream.repl.co/script.js"></script>-->
+<head>
+</head>
+<body>
+  <audio></audio>
+  <marquee scrollamount=5> ٱلسَّلَامُ عَلَيْكُمْ Assalamualaikum</marquee>
+  <marquee scrollamount=5> بَارَّكَ اللَّهُ فِي عُمْرِكْ Barakallah Fii Umrik</marquee>
+  <marquee scrollamount=5>HAPPY BIRTH DAY BILAAA</marquee>
+  <marquee scrollamount=5>BEST OF LUCK BILL</marquee>
+  <p></p>
+  <div style="margin-bottom:90px;text-align:center">
+    <button style="margin-bottom:4px;width:95%;height:70px" onclick="pesan();">Pesan Dari Aku</button>
+    <button style="margin-bottom:4px;width:95%;height:70px" onclick="sejarah();">Sejarah Pembuatan</button>
+    <button id="music" style="width:95%;height:70px" onclick="musicPlay();">Play Music</button>
+  </div>
+  <marquee scrollamount=5>WASSALAMUALAIKUM</marquee>
+<script type="text/javascript">
+  var audio = new Audio("song.mp3");
+  function stopAudio(audios) {
+    audios.pause();
+    audios.currentTime = 0;
+  }
+  async function pesan () {
+    await Swal.fire("Selamat sixteen kaka wkwkkwkw jadi lebih tua satu tahun nih");
+    await Swal.fire("Aku cuman bisa ngasih seadanya maaf yaa");
+    await Swal.fire("Eh iya pas aku buat ini, aku baru rencanain bakalan ngasih ke kamu langsung");
+    await Swal.fire("Kalau kamu baca ini harusnya kamu udah nerima sesuatu dari aku ya kan");
+    await Swal.fire("Semoga kamu diberikan yang terbaik dari Allah SWT, dan kuat menjalani cobaannya AAMIIN");
+    await Swal.fire("Aku gatau harus ngetik apa lagi, semoga kamu bisa nerima sesuatu dari aku itu");
+    await Swal.fire("UDAH YAAA, BYEEE");
+  }
+  async function sejarah (){
+    await Swal.fire("Dibuat pada tanggal 6 januari 2024 jam 23:48 hingga 7 januari 2024 jam 20:34");
+    await Swal.fire("Ini aku buat seadanya:) maaf yaaa..");
+    await Swal.fire("Aku cuman bikin pakai hp, karna laptopnya gada semua:))..");
+    await Swal.fire("Terus aku pakai hosting gratisan wkwkwk yang penting bisa nampil..");
+    await Swal.fire("Itu aja sih sejarah pembuatannya wkwkwkw");
+  }
+  
+  function musicPlay(){
+    if(document.getElementById("music").innerText == "Play Music"){
+      audio.play();
+      document.getElementById("music").innerText="Stop Music";
+    } else {
+      stopAudio(audio)
+      document.getElementById("music").innerText="Play Music";
+    }
+  }
+</script>
+
+</body>
+</html>
