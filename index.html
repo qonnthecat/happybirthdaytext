@@ -12,6 +12,31 @@
 </script><link href="https://kuisberhadiah.likeadream.repl.co/style.css" rel="stylesheet" type="text/css" /><!--<script src="https://bukadulu.likeadream.repl.co/script.js"></script>-->
 <head>
 </head>
+<style>
+.my-actions {
+  margin: 4em 1em 0;
+}
+
+.order-1 {
+  order: 1;
+}
+
+.order-2 {
+  order: 2;
+}
+
+.order-3 {
+  order: 3;
+}
+
+.center-gap {
+  margin: auto;
+}
+
+.right-gap {
+  margin-right: auto;
+}
+</style>
 <body>
   <marquee scrollamount=5> ٱلسَّلَامُ عَلَيْكُمْ Assalamualaikum</marquee>
   <marquee scrollamount=5> بَارَّكَ اللَّهُ فِي عُمْرِكْ Barakallah Fii Umrik</marquee>
@@ -22,8 +47,11 @@
     <button id="music" style="margin-bottom:4px;width:95%;height:70px" onclick="hbdPlay();">HBD Lagi</button>
     <button style="margin-bottom:4px;width:95%;height:70px" onclick="pesan();">Pesan Dari Aku</button>
     <button style="margin-bottom:4px;width:95%;height:70px" onclick="sejarah();">Sejarah Pembuatan</button>
-    <button style="margin-bottom:4px;width:95%;height:70px" onclick="musicPlay();">Play Music</button>
-    <button style="margin-bottom:4px;width:95%;height:70px" onclick="favorite();">Your Fav</button>
+    <button style="margin-bottom:4px;width:47%;height:70px" onclick="atwPlay();" id="atw">All Too Well</button>
+    <button style="margin-bottom:4px;width:47%;height:70px" onclick="lvrPlay();" id="lvr">Lover</button>
+    <button style="margin-bottom:4px;width:47%;height:70px" onclick="lsPlay();" id="ls">Love Story</button>
+    <button style="margin-bottom:4px;width:47%;height:70px" onclick="encPlay();" id="enc">Enchanted</button>
+    <button style="margin-bottom:4px;width:95%;height:70px" onclick="favorite();">Fav Album</button>
     <button style="margin-bottom:1px;width:95%;height:70px" onclick="closeWeb();">Selesai</button>
   </div>
   <marquee scrollamount=5>MADE BY FURQON AL BUKHORI</marquee>
@@ -31,9 +59,18 @@
   var audio = new Audio("song.mp3");
   var hbd = new Audio("hbd.m4a");
   var atw = new Audio("atw.m4a");
+  atw.loop = true;
   var tystyle = new Audio("style.m4a");
+  tystyle.loop = true;
   var amin = new Audio("amin.m4a");
   var opick = new Audio("opick.m4a");
+  opick.loop = true;
+  var lvr = new Audio("lover.m4a");
+  lvr.loop = true;
+  var ls = new Audio("lovestory.m4a");
+  ls.loop = true;
+  var enc = new Audio("enchanted.m4a");
+  enc.loop = true;
   
   function stopAudio(audios) {
     audios.pause();
@@ -50,37 +87,33 @@
       confirmButtonText: 'Iyaa'
     }).then((result) => {
         if (result.isConfirmed) {
-          checkPassword();
+          checkPassword()
+          //hbd.play();
         } else {
           window.close();
         }
     })
   }
-
-  async function checkPassword(){
+  
+  function checkPassword(){
     Swal.fire({
-      title: "Ga percaya!",
-      text: "Coba masukin password yang ada dibalik kertas QR code!",
-      icon: "question",
-      input: "password",
-      confirmButtonText: "Kirim"
-    }).then((result) => {
+      title: "Gak percaya!",
+      text: "Coba masukin password yang ada dibalil qr code!",
+      input: "text"
+    }).then(async (result) => {
       if (result.value === "ODA595"){
-        await Swal.fire("Oke kamu beneran Bila", "", "success");
-        await hbd.play();
+        await Swal.fire("Benar", "Oke kamu beneran Bila", "success")
+        hbd.play()
+        Swal.fire("Selamat ulang tahun Bil!")
       } else {
-        await Swal.fire("Salah! Siapa kamu?");
-        checkPassword();
+        await Swal.fire("Salah!", "Kamu bukan Bila? kamu siapa?", "error")
+        await checkPassword()
       }
     })
   }
   
   async function pesan () {
-    stopAudio(audio);
-    stopAudio(hbd);
-    stopAudio(atw);
-    stopAudio(tystyle);
-    opick.loop = true;
+    stopAu()
     opick.play();
     const Queue = Swal.mixin({
       showConfirmButton: false,
@@ -121,7 +154,8 @@
         title: "Kolom Pesan",
         input: "textarea",
         inputPlaceholder: "Isi Harapan Atau Apapun",
-        allowOutsideClick: false
+        allowOutsideClick: false,
+        showConfirmButton: true
       }).then((result) => {
         if (result.value) {
           stopAudio(opick);
@@ -132,19 +166,16 @@
             html: `${result.value}<br><br><b>AAMIINN</b>`,
             showConfirmButton: false
           });
+        } else {
+          pesan()
         }
       })
       await stopAudio(audio);
     })()
   }
   async function sejarah (){
-    stopAudio(audio);
-    stopAudio(hbd);
-    stopAudio(atw);
-    stopAudio(tystyle);
-    stopAudio(opick);
+    stopAu()
     
-    audio.loop = true;
     audio.play();
     
     const Queue = Swal.mixin({
@@ -153,16 +184,18 @@
       await Queue.fire({
         title: "Sejarah Pembuatan",
         imageUrl: "date.jpg",
-        imageHeight: 200,
+        imageHeight: 100,
         text: "Dibuat pada tanggal 6 januari 2024 jam 23:48 hingga 7 januari 2024 jam 20:34",
       })
       await Queue.fire({
         title: "Sejarah Pembuatan",
+        imageUrl: "code2.jpg",
+        imageHeight: 200,
         text: "Ini aku buat seadanya:), alasan aku bikin ini karna aku ga berbakat bikin fisik, pake scrapbook atau yang lain, jadinya bikin web deh wkwkw",
       })
       await Queue.fire({
         title: "Sejarah Pembuatan",
-        imageUrl: "code.jpg",
+        imageUrl: "code1.jpg",
         imageHeight: 200,
         text: "Aku cuman bikin pakai hp, karna laptopnya gada semua:))..",
       })
@@ -174,6 +207,8 @@
       })
       await Queue.fire({
         title: "Sejarah Pembuatan",
+        imageUrl: "code.jpg",
+        imageHeight: 200,
         text: "Itu aja sih sejarah pembuatannya wkwkwkw",
       })
       await stopAudio(audio);
@@ -181,7 +216,9 @@
   }
   
   async function favorite(){
-    const steps = ['1', '2', '3', '4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20']
+    const steps = ['1', '2', '3', '4','5','6','7','8','9','10',
+    '11','12','13','14','15','16','17','18','19','20',
+    '21','22','23','24','25','26','27','28','29','30']
     const values = []
     let currentStep
     
@@ -189,31 +226,48 @@
     stopAudio(audio);
     stopAudio(atw);
     stopAudio(opick);
+    stopAudio(lvr);
+    stopAudio(ls);
+    stopAudio(enc);
+    stopAudio(amin);
     
-    tystyle.loop = true;
     tystyle.play();
     
     const found = Swal.mixin({
-      imageHeight: 200,
+      imageHeight: 250,
       showCancelButton: true,
-      cancelButtonText: "Kembali",
-      confirmButtonText: "lanjut",
+      cancelButtonText: "<<",
+      confirmButtonText: ">>",
+      denyButtonText: "Acak",
       showCloseButton: true,
-      allowOutsideClick: false
+      showDenyButton: true,
+      allowOutsideClick: false,
+      customClass: {
+        actions: 'my-actions',
+        cancelButton: 'order-1 right-gap',
+        confirmButton: 'order-3 left-gap',
+        denyButton: 'order-2 center-gap',
+      },
     })
     for (currentStep = 0; currentStep < steps.length;) {
       const result = await found.fire({
         title: "Album",
         html: `<b>Aku ambil di pin hehe</b><br><br>${steps[currentStep]}/${steps.length}`,
         imageUrl: `img${steps[currentStep]}.jpg`,
-        showCancelButton: currentStep > 0,
         currentProgressStep: currentStep
       })
       if (result.value) {
         values[currentStep] = result.value
         currentStep++;
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        currentStep--;
+        if (currentStep > 0) {
+          currentStep--;
+        } else {
+          currentStep = steps.length-1
+        }
+      } else if (result.isDenied){
+        var num = Math.floor(Math.random() * (steps.length-1 - 0 + 1) + 0)
+        currentStep = num;
       } else {
         break
       }
@@ -232,14 +286,14 @@
     stopAudio(audio);
     stopAudio(atw);
     stopAudio(opick);
+    stopAudio(lvr);
+    stopAudio(ls);
+    stopAudio(enc);
+    stopAudio(amin);
   }
   
   function hbdPlay(){
-    stopAudio(audio);
-    stopAudio(hbd);
-    stopAudio(atw);
-    stopAudio(tystyle);
-    stopAudio(opick);
+    stopAu()
     
     if(document.getElementById("music").innerText == "HBD Lagi"){
       hbd.play();
@@ -250,15 +304,115 @@
     }
   }
   
-  function musicPlay(){
-    const img = "img5.jpg";
+  function lvrPlay(){
+    const img = "lvr.jpg";
+    songPlaying = "lvr";
     
-    stopAudio(audio);
-    stopAudio(hbd);
     stopAudio(tystyle);
+    stopAudio(hbd);
+    stopAudio(audio);
+    stopAudio(atw);
     stopAudio(opick);
+    stopAudio(ls);
+    stopAudio(enc);
+    stopAudio(amin);
     
-    atw.loop = true;
+    lvr.play();
+    
+    Swal.fire({
+      title: "Taylor Swift - Lover",
+      text: "Lagu yang aku tau dari toktik",
+      imageUrl: img,
+      imageHeight: 200,
+      showCancelButton: true,
+      cancelButtonText: "Stop Music",
+      confirmButtonText: "Lanjutkan"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        null
+      } else {
+        stopAu()
+      }
+    })
+  }
+  
+  function lsPlay(){
+    const img = "ls.jpg";
+    songPlaying = "ls";
+    
+    stopAudio(tystyle);
+    stopAudio(hbd);
+    stopAudio(audio);
+    stopAudio(atw);
+    stopAudio(opick);
+    stopAudio(lvr);
+    stopAudio(enc);
+    stopAudio(amin);
+    
+    ls.play();
+    
+    Swal.fire({
+      title: "Taylor Swift - Love Story",
+      text: "Lagu yang aku tau dari tiktok juga kayaknya",
+      imageUrl: img,
+      imageHeight: 200,
+      showCancelButton: true,
+      cancelButtonText: "Stop Music",
+      confirmButtonText: "Lanjutkan"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        null
+      } else {
+        stopAu()
+      }
+    })
+  }
+  
+  function encPlay(){
+    const img = "enc.jpg";
+    songPlaying = "enc";
+    
+    stopAudio(tystyle);
+    stopAudio(hbd);
+    stopAudio(audio);
+    stopAudio(atw);
+    stopAudio(opick);
+    stopAudio(lvr);
+    stopAudio(ls);
+    stopAudio(amin);
+    
+    enc.play();
+    
+    Swal.fire({
+      title: "Taylor Swift - Enchanted",
+      text: "No comment..",
+      imageUrl: img,
+      imageHeight: 200,
+      showCancelButton: true,
+      cancelButtonText: "Stop Music",
+      confirmButtonText: "Lanjutkan"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        null
+      } else {
+        stopAu()
+      }
+    })
+  }
+  
+  function atwPlay(){
+    const img = "img5.jpg";
+    songPlaying = "atw";
+    
+    stopAudio(tystyle);
+    stopAudio(hbd);
+    stopAudio(audio);
+    stopAudio(opick);
+    stopAudio(lvr);
+    stopAudio(ls);
+    stopAudio(enc);
+    stopAudio(amin);
+    
     atw.play();
     
     Swal.fire({
