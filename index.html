@@ -66,7 +66,7 @@
       confirmButtonText: "Kirim"
     }).then((result) => {
       if (result.value === "ODA595"){
-        await Swal.fire("Oke kamu beneran Bila, "", "success");
+        await Swal.fire("Oke kamu beneran Bila", "", "success");
         await hbd.play();
       } else {
         await Swal.fire("Salah! Siapa kamu?");
