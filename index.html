@@ -13,49 +13,278 @@
 <head>
 </head>
 <body>
-  <audio></audio>
   <marquee scrollamount=5> ٱلسَّلَامُ عَلَيْكُمْ Assalamualaikum</marquee>
   <marquee scrollamount=5> بَارَّكَ اللَّهُ فِي عُمْرِكْ Barakallah Fii Umrik</marquee>
   <marquee scrollamount=5>HAPPY BIRTH DAY BILAAA</marquee>
   <marquee scrollamount=5>BEST OF LUCK BILL</marquee>
   <p></p>
-  <div style="margin-bottom:90px;text-align:center">
+  <div style="margin-bottom:4px;text-align:center">
+    <button id="music" style="margin-bottom:4px;width:95%;height:70px" onclick="hbdPlay();">HBD Lagi</button>
     <button style="margin-bottom:4px;width:95%;height:70px" onclick="pesan();">Pesan Dari Aku</button>
     <button style="margin-bottom:4px;width:95%;height:70px" onclick="sejarah();">Sejarah Pembuatan</button>
-    <button id="music" style="width:95%;height:70px" onclick="musicPlay();">Play Music</button>
+    <button style="margin-bottom:4px;width:95%;height:70px" onclick="musicPlay();">Play Music</button>
+    <button style="margin-bottom:4px;width:95%;height:70px" onclick="favorite();">Your Fav</button>
+    <button style="margin-bottom:1px;width:95%;height:70px" onclick="closeWeb();">Selesai</button>
   </div>
-  <marquee scrollamount=5>WASSALAMUALAIKUM</marquee>
+  <marquee scrollamount=5>MADE BY FURQON AL BUKHORI</marquee>
 <script type="text/javascript">
   var audio = new Audio("song.mp3");
+  var hbd = new Audio("hbd.m4a");
+  var atw = new Audio("atw.m4a");
+  var tystyle = new Audio("style.m4a");
+  var amin = new Audio("amin.m4a");
+  var opick = new Audio("opick.m4a");
+  
   function stopAudio(audios) {
     audios.pause();
     audios.currentTime = 0;
   }
+  window.onload = function(){
+    Swal.fire({
+      title: "Assalamu'alaikum",
+      text: "Apakah kamu Bila?",
+      icon: 'question',
+      showCancelButton: true,
+      cancelButtonText: 'Bukan lah',
+      confirmButtonColor: '#3085d6',
+      confirmButtonText: 'Iyaa'
+    }).then((result) => {
+        if (result.isConfirmed) {
+          hbd.play();
+        } else {
+          window.close();
+        }
+    })
+  }
   async function pesan () {
-    await Swal.fire("Selamat sixteen kaka wkwkkwkw jadi lebih tua satu tahun nih");
-    await Swal.fire("Aku cuman bisa ngasih seadanya maaf yaa");
-    await Swal.fire("Eh iya pas aku buat ini, aku baru rencanain bakalan ngasih ke kamu langsung");
-    await Swal.fire("Kalau kamu baca ini harusnya kamu udah nerima sesuatu dari aku ya kan");
-    await Swal.fire("Semoga kamu diberikan yang terbaik dari Allah SWT, dan kuat menjalani cobaannya AAMIIN");
-    await Swal.fire("Aku gatau harus ngetik apa lagi, semoga kamu bisa nerima sesuatu dari aku itu");
-    await Swal.fire("UDAH YAAA, BYEEE");
+    stopAudio(audio);
+    stopAudio(hbd);
+    stopAudio(atw);
+    stopAudio(tystyle);
+    opick.loop = true;
+    opick.play();
+    const Queue = Swal.mixin({
+      showConfirmButton: false,
+      showClass: { backdrop: 'swal2-noanimation' },
+      hideClass: { backdrop: 'swal2-noanimation' },
+    });(async () => {
+      await Queue.fire({
+        title: 'Pesan',
+        imageUrl: "lilin.jpeg",
+        imageHeight: 200,
+        text: "Selamat sixteen kaka wkwkkwkw, jadi lebih tua satu tahun nih ya..",
+      }),
+      await Queue.fire({
+        title: 'Pesan',
+        text: "Disini aku cuman bisa ngasih seadanya maaf yaa... coba liat sejarah pembuatannya..",
+      }),
+      await Queue.fire({
+        title: 'Pesan',
+        text: "Eh iya pas aku buat ini, aku baru rencanain bakalan ngasih ke kamu langsung.. gatau aku berani ngga",
+      })
+      await Queue.fire({
+        title: 'Pesan',
+        text: "Kalau kamu baca ini harusnya kamu udah nerima sesuatu dari aku ya kan",
+      })
+      await Queue.fire({
+        title: 'Pesan',
+        text: "Semoga kamu diberikan yang terbaik dari Allah SWT, dan kuat menjalani cobaannya AAMIIN",
+      })
+      await Queue.fire({
+        title: 'Pesan',
+        text: "Aku gatau harus ngetik apa lagi, semoga kamu bisa nerima sesuatu dari aku itu",
+      })
+      await Queue.fire({
+        title: 'Pesan',
+        text: "HABIS INI NGISI PESAN KAMU BUAT ULTAH KAMU... UDAH YAAA, BYEEE",
+      })
+      await Queue.fire({
+        title: "Kolom Pesan",
+        input: "text",
+        inputPlaceholder: "Isi Harapan Atau Apapun",
+        allowOutsideClick: false
+      }).then((result) => {
+        if (result.value) {
+          stopAudio(opick);
+          amin.play();
+          Swal.fire({
+            imageUrl: "amin.jpeg",
+            imageHeight: 200,
+            html: `${result.value}<br><br><b>AAMIINN</b>`,
+            showConfirmButton: false
+          });
+        }
+      })
+      await stopAudio(audio);
+    })()
   }
   async function sejarah (){
-    await Swal.fire("Dibuat pada tanggal 6 januari 2024 jam 23:48 hingga 7 januari 2024 jam 20:34");
-    await Swal.fire("Ini aku buat seadanya:) maaf yaaa..");
-    await Swal.fire("Aku cuman bikin pakai hp, karna laptopnya gada semua:))..");
-    await Swal.fire("Terus aku pakai hosting gratisan wkwkwk yang penting bisa nampil..");
-    await Swal.fire("Itu aja sih sejarah pembuatannya wkwkwkw");
+    stopAudio(audio);
+    stopAudio(hbd);
+    stopAudio(atw);
+    stopAudio(tystyle);
+    stopAudio(opick);
+    
+    audio.loop = true;
+    audio.play();
+    
+    const Queue = Swal.mixin({
+      showConfirmButton: false
+    });(async () => {
+      await Queue.fire({
+        title: "Sejarah Pembuatan",
+        imageUrl: "date.jpg",
+        imageHeight: 200,
+        text: "Dibuat pada tanggal 6 januari 2024 jam 23:48 hingga 7 januari 2024 jam 20:34",
+      })
+      await Queue.fire({
+        title: "Sejarah Pembuatan",
+        text: "Ini aku buat seadanya:), alasan aku bikin ini karna aku ga berbakat bikin fisik, pake scrapbook atau yang lain, jadinya bikin web deh wkwkw",
+      })
+      await Queue.fire({
+        title: "Sejarah Pembuatan",
+        imageUrl: "code.jpg",
+        imageHeight: 200,
+        text: "Aku cuman bikin pakai hp, karna laptopnya gada semua:))..",
+      })
+      await Queue.fire({
+        title: "Sejarah Pembuatan",
+        imageUrl: "netlify.jpg",
+        imageHeight: 200,
+        text: "Terus aku pakai hosting gratisan wkwkwk yang penting bisa nampil..",
+      })
+      await Queue.fire({
+        title: "Sejarah Pembuatan",
+        text: "Itu aja sih sejarah pembuatannya wkwkwkw",
+      })
+      await stopAudio(audio);
+    })()
+  }
+  
+  async function favorite(){
+    const steps = ['1', '2', '3', '4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20']
+    const values = []
+    let currentStep
+    
+    stopAudio(hbd);
+    stopAudio(audio);
+    stopAudio(atw);
+    stopAudio(opick);
+    
+    tystyle.loop = true;
+    tystyle.play();
+    
+    const found = Swal.mixin({
+      imageHeight: 200,
+      showCancelButton: true,
+      cancelButtonText: "Kembali",
+      confirmButtonText: "lanjut",
+      showCloseButton: true,
+      allowOutsideClick: false
+    })
+    for (currentStep = 0; currentStep < steps.length;) {
+      const result = await found.fire({
+        title: "Album",
+        html: `<b>Aku ambil di pin hehe</b><br><br>${steps[currentStep]}/${steps.length}`,
+        imageUrl: `img${steps[currentStep]}.jpg`,
+        showCancelButton: currentStep > 0,
+        currentProgressStep: currentStep
+      })
+      if (result.value) {
+        values[currentStep] = result.value
+        currentStep++;
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        currentStep--;
+      } else {
+        break
+      }
+    }
+      //stopAudio(tystyle);
+      if (currentStep === steps.length) {
+        favorite();
+      } else {
+        stopAudio(tystyle);
+      }
+  }
+  
+  function stopAu(){
+    stopAudio(tystyle);
+    stopAudio(hbd);
+    stopAudio(audio);
+    stopAudio(atw);
+    stopAudio(opick);
+  }
+  
+  function hbdPlay(){
+    stopAudio(audio);
+    stopAudio(hbd);
+    stopAudio(atw);
+    stopAudio(tystyle);
+    stopAudio(opick);
+    
+    if(document.getElementById("music").innerText == "HBD Lagi"){
+      hbd.play();
+      document.getElementById("music").innerText="Berhenti Woi";
+    } else {
+      stopAudio(hbd)
+      document.getElementById("music").innerText="HBD Lagi";
+    }
   }
   
   function musicPlay(){
-    if(document.getElementById("music").innerText == "Play Music"){
-      audio.play();
-      document.getElementById("music").innerText="Stop Music";
-    } else {
-      stopAudio(audio)
-      document.getElementById("music").innerText="Play Music";
-    }
+    const img = "img5.jpg";
+    
+    stopAudio(audio);
+    stopAudio(hbd);
+    stopAudio(tystyle);
+    stopAudio(opick);
+    
+    atw.loop = true;
+    atw.play();
+    
+    Swal.fire({
+      title: "Taylor Swift - All Too Well",
+      text: "Lagu yang bikin aku selalu inget sama kamu",
+      imageUrl: img,
+      imageHeight: 200,
+      showCancelButton: true,
+      cancelButtonText: "Stop Music",
+      confirmButtonText: "Lanjutkan"
+    }).then((result) => {
+      if (result.isConfirmed) {
+        null
+      } else {
+        stopAudio(atw)
+      }
+    })
+  }
+  
+  function closeWeb(){
+    let timerInterval;
+    
+    stopAu();
+    
+    Swal.fire({
+      title: "Closing!",
+      html: "<b>makasih udah liat!<br><br>WASSALAMU'ALAIKUM Dari Furqon</b>",
+      timer: 4000,
+      timerProgressBar: true,
+      allowOutsideClick: false,
+      didOpen: () => {
+        Swal.showLoading();
+        //const timer = Swal.getPopup().querySelector("b");
+        timerInterval = setInterval(() => {
+          //timer.textContent = `${Swal.getTimerLeft()}`;
+        }, 100);
+      },
+      willClose: () => {
+        clearInterval(timerInterval);
+      }
+    }).then((result) => {
+      if (result.dismiss === Swal.DismissReason.timer) {
+        window.close();
+      }
+    });
   }
 </script>
 
