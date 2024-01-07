@@ -50,12 +50,29 @@
       confirmButtonText: 'Iyaa'
     }).then((result) => {
         if (result.isConfirmed) {
-          hbd.play();
+          checkPassword();
         } else {
           window.close();
         }
     })
   }
+
+  async function checkPassword(){
+    Swal.fire({
+      title: "Ga percaya!",
+      text: "Coba masukin password yang ada dibalik kertas QR code!",
+      icon: "question",
+      input: "password",
+      confirmButtonText: "Kirim"
+    }).then((result) => {
+      if (result.value == "ODA595"){
+        await Swal.fire("Oke kamu beneran Bila, "", "success");
+        hbd.play();
+      } else {
+        await Swal.fire("Salah! Siapa kamu?");
+        checkPassword();
+      }
+  
   async function pesan () {
     stopAudio(audio);
     stopAudio(hbd);
@@ -100,7 +117,7 @@
       })
       await Queue.fire({
         title: "Kolom Pesan",
-        input: "text",
+        input: "textarea",
         inputPlaceholder: "Isi Harapan Atau Apapun",
         allowOutsideClick: false
       }).then((result) => {
