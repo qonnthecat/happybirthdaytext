@@ -76,7 +76,7 @@
     audios.pause();
     audios.currentTime = 0;
   }
-  window.onload = function(){
+  window.onload = async function(){
     Swal.fire({
       title: "Assalamu'alaikum",
       text: "Apakah kamu Bila?",
@@ -90,7 +90,8 @@
           checkPassword()
           //hbd.play();
         } else {
-          window.close();
+          await Swal.fire("Ups!","sorry ini khusus buat Bila","error")
+          await window.close();
         }
     })
   }
